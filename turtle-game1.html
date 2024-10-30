@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turtle Rubbish Cleanup Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <h1>Turtle Rubbish Cleanup Game</h1>
+
+    <!-- Game Board -->
+    <div id="game-board">
+        <!-- Turtle -->
+        <div id="turtle"></div>
+
+        <!-- Rubbish -->
+        <div id="rubbish"></div>
+    </div>
+
+    <!-- Controls for moving the turtle -->
+    <div id="controls">
+        <div>
+            <button id="move-left">Left</button>
+            <button id="move-up">Up</button>
+            <button id="move-down">Down</button>
+            <button id="move-right">Right</button>
+        </div>
+    </div>
+
+    <!-- Display turtle and rubbish positions -->
+    <div id="positions">
+        <p>Turtle Position: <span id="turtle-position">(0, 0)</span></p>
+        <p>Rubbish Position: <span id="rubbish-position">(x, y)</span></p>
+    </div>
+
+    <script src="game.js"></script>
+
+</body>
+</html>

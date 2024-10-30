@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Cartesian Plane</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #controls {
+            margin-top: 20px;
+        }
+        .slider-label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Interactive Cartesian Plane</h1>
+
+    <svg width="400" height="400" xmlns="http://www.w3.org/2000/svg" id="cartesian-plane">
+        <!-- Draw the x and y axes -->
+        <line x1="50" y1="200" x2="350" y2="200" stroke="black" stroke-width="2" />
+        <line x1="200" y1="50" x2="200" y2="350" stroke="black" stroke-width="2" />
+
+        <!-- X and Y axis labels -->
+        <text x="360" y="205" font-family="Arial" font-size="12">X</text>
+        <text x="205" y="40" font-family="Arial" font-size="12">Y</text>
+
+        <!-- Point -->
+        <circle id="point" cx="200" cy="200" r="5" fill="red" />
+        <text id="point-coordinates" x="210" y="195" font-family="Arial" font-size="12">(0, 0)</text>
+
+        <!-- Grid lines for clarity -->
+        <line x1="100" y1="50" x2="100" y2="350" stroke="lightgray" stroke-width="1" />
+        <line x1="300" y1="50" x2="300" y2="350" stroke="lightgray" stroke-width="1" />
+        <line x1="50" y1="100" x2="350" y2="100" stroke="lightgray" stroke-width="1" />
+        <line x1="50" y1="300" x2="350" y2="300" stroke="lightgray" stroke-width="1" />
+		<!-- Vertical grid lines -->
+		<line x1="185" y1="50" x2="185" y2="350" stroke="lightgray" stroke-width="1" /> <!-- x = -1 -->
+		<line x1="215" y1="50" x2="215" y2="350" stroke="lightgray" stroke-width="1" /> <!-- x = 1 -->
+		<line x1="170" y1="50" x2="170" y2="350" stroke="lightgray" stroke-width="1" /> <!-- x = -2 -->
+		<line x1="230" y1="50" x2="230" y2="350" stroke="lightgray" stroke-width="1" /> <!-- x = 2 -->
+
+<!-- Horizontal grid lines -->
+		<line x1="50" y1="185" x2="350" y2="185" stroke="lightgray" stroke-width="1" /> <!-- y = 1 -->
+		<line x1="50" y1="215" x2="350" y2="215" stroke="lightgray" stroke-width="1" /> <!-- y = -1 -->
+		<line x1="50" y1="170" x2="350" y2="170" stroke="lightgray" stroke-width="1" /> <!-- y = 1 -->
+		<line x1="50" y1="230" x2="350" y2="230" stroke="lightgray" stroke-width="1" /> <!-- y = -1 -->
+
+    </svg>
+
+    <div id="controls">
+        <div>
+            <label class="slider-label" for="x-slider">X Coordinate: </label>
+            <input type="range" id="x-slider" min="-10" max="10" value="0" step="1">
+            <span id="x-value">0</span>
+        </div>
+        <div>
+            <label class="slider-label" for="y-slider">Y Coordinate: </label>
+            <input type="range" id="y-slider" min="-10" max="10" value="0" step="1">
+            <span id="y-value">0</span>
+        </div>
+    </div>
+
+    <script>
+        const xSlider = document.getElementById('x-slider');
+        const ySlider = document.getElementById('y-slider');
+        const xValueDisplay = document.getElementById('x-value');
+        const yValueDisplay = document.getElementById('y-value');
+        const point = document.getElementById('point');
+        const pointCoordinates = document.getElementById('point-coordinates');
+
+        // Function to update the point position on the plane
+        function updatePoint() {
+            const xValue = parseInt(xSlider.value);
+            const yValue = parseInt(ySlider.value);
+
+            // Update the displayed value
+            xValueDisplay.textContent = xValue;
+            yValueDisplay.textContent = yValue;
+
+            // Map the slider values (-10 to 10) to the SVG coordinate system (50 to 350 for x, 350 to 50 for y)
+            const svgX = 200 + xValue * 15;
+            const svgY = 200 - yValue * 15;
+
+            // Update point position
+            point.setAttribute('cx', svgX);
+            point.setAttribute('cy', svgY);
+
+            // Update the coordinates label
+            pointCoordinates.setAttribute('x', svgX + 10);
+            pointCoordinates.setAttribute('y', svgY - 5);
+            pointCoordinates.textContent = `(${xValue}, ${yValue})`;
+        }
+
+        // Attach event listeners to sliders
+        xSlider.addEventListener('input', updatePoint);
+        ySlider.addEventListener('input', updatePoint);
+    </script>
+
+</body>
+</html>

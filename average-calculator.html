@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Average Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Maths & Computing</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="maths.html">Maths</a></li>
+                    <li class="nav-item"><a class="nav-link" href="computing.html">Computing</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="container text-center my-5">
+        <h1>Average Calculator</h1>
+    </header>
+    <div class="container my-5">
+        <div class="mb-3">
+            <label for="numSlider" class="form-label">Select number of random values:</label>
+            <input type="range" class="form-range" id="numSlider" min="1" max="10" value="5" oninput="updateNumbers()">
+            <p>Number of Values: <span id="sliderValue">5</span></p>
+        </div>
+        <div class="mb-3">
+            <p id="numbers">Numbers: </p>
+        </div>
+        <button class="btn btn-primary mb-3" onclick="toggleAverage()">Toggle Average Display</button>
+        <div id="averageSection" class="mb-3" style="display: none;">
+            <p>Average: <span id="average">0</span></p>
+        </div>
+    </div>
+    <footer class="bg-light text-center py-3">
+        <p>&copy; 2024 Maths & Computing</p>
+    </footer>
+
+    <script>
+        function generateRandomNumbers(count) {
+            return Array.from({ length: count }, () => Math.floor(Math.random() * 100) + 1);
+        }
+
+        function updateNumbers() {
+            const slider = document.getElementById('numSlider');
+            const count = parseInt(slider.value, 10);
+            document.getElementById('sliderValue').textContent = count;
+
+            const numbers = generateRandomNumbers(count);
+            document.getElementById('numbers').textContent = `Numbers: ${numbers.join(', ')}`;
+            
+            const average = numbers.reduce((sum, num) => sum + num, 0) / numbers.length;
+            document.getElementById('average').textContent = average.toFixed(2);
+        }
+
+        function toggleAverage() {
+            const averageSection = document.getElementById('averageSection');
+            averageSection.style.display = averageSection.style.display === 'none' ? 'block' : 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', updateNumbers);
+    </script>
+</body>
+</html>

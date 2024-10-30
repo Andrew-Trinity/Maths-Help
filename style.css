@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    color: #0073e6;
+}
+
+footer {
+    background-color: #f8f9fa;
+}

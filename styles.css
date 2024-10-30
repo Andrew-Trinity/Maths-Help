@@ -1,0 +1,50 @@
+/* General layout styling */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+/* Title */
+h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Game board styling */
+#game-board {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    background-color: #e0f7fa;
+    border: 2px solid #333;
+    margin: 0 auto 20px;
+}
+
+/* Turtle and rubbish styling */
+#turtle, #rubbish {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+}
+
+/* Turtle styling */
+#turtle {
+    background-color: green;
+    border-radius: 50%;
+}
+
+/* Rubbish styling */
+#rubbish {
+    background-color: red;
+}
+
+/* Control buttons */
+button {
+    font-size: 16px;
+    padding: 10px;
+    margin: 5px;
+}
